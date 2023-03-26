@@ -16,7 +16,7 @@ st.set_page_config(
 
 
 
-API_URL = "https://beam.slai.io/a8vki"
+API_URL = "https://beam.slai.io/gxkag"
 headers = {
   "Accept": "*/*",
   "Accept-Encoding": "gzip, deflate",
@@ -44,13 +44,13 @@ def clear_text():
     st.session_state["input"] = ""
 
 def get_text():
-    input_text = st.text_input("You: ","", key="input")
+    input_text = st.text_input("Enter your search...","", key="input")
     return input_text 
 
 if __name__ == "__main__":
 
     
-
+    username = st.text_input("Enter your username...", key="username")
 
     user_input = get_text()
     if st.button("Send"):
@@ -60,10 +60,11 @@ if __name__ == "__main__":
                 "query":{
                     "text": user_input,
                 },
-                "identifier":"sagarnil",
+                "identifier":username,
                 "gender":gender,
             }
             output = query(payload)
+            print(output)
             st.header("Chat Reseted!")
 
     
@@ -71,8 +72,9 @@ if __name__ == "__main__":
             payload = {
             "query":{
                 "text": user_input,
+                "image": None
             },
-            "identifier":"sagarnil",
+            "identifier":username,
             "gender":gender,
         }
             output = query(payload)
